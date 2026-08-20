@@ -40,6 +40,10 @@ public class Main {
 
                 System.out.println("vida?");
                 personaje_jugador.setearVida(Integer.parseInt(scaner.nextLine()));                
+                
+                System.out.println("asignarle la edad al personaje ");
+                personaje_jugador.setear_edad(Integer.parseInt(scaner.nextLine())) ;
+
                 break;
 
             case "2":
@@ -50,6 +54,8 @@ public class Main {
                 System.out.println(" APELLIDO :" + personaje_jugador.apellido );
 
                 System.out.println(" VIDA:" + personaje_jugador.verVida());
+
+                System.out.println("La edad del personaje es : " + personaje_jugador.veredad());
 
                 break;
 
