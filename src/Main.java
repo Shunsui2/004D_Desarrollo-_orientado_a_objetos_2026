@@ -1,80 +1,173 @@
 import java.util.Scanner;
 
+
+
 public class Main {
-    
-    public static void main(String[] args) {
-       mostrar_menu();
+
+
+
+  public static void main(String[] args) {
+
+    mostrarMenu();
+
+
+
+  }
+
+
+
+  static void mostrarMenu() {
+
+    String opcion_menu;
+
+    boolean mantener_menu = true;
+
+
+
+    Personaje personaje_jugador = new Personaje();
+
+
+
+    Scanner scanner = new Scanner(System.in);
+
+
+
+    while (mantener_menu) {
+
+      System.out.println("Elija su opción");
+
+      System.out.println("1.- Crear personaje");
+
+      System.out.println("2.- Ver personaje");
+
+      System.out.println("3.- Cerrar");
+
+      opcion_menu = scanner.nextLine();
+
+
+
+      switch (opcion_menu) {
+
+        case "1":
+          crearPersonaje(scanner, personaje_jugador);
+          
+          break;
+
+        case "2":
+
+          verDatosDelPersonaje(scanner, personaje_jugador);
+
+          break;
+
+        case "3":
+
+          System.out.println("Cosas de opcion 3");
+
+          mantener_menu = false;
+
+          break;
+
+
+
+        default:
+
+          System.out.println("Por favor ingrese una opción valida");
+
+          break;
+
+      }
+
     }
 
-    static void mostrar_menu(){
-         String opcion_elegida ;
-        Scanner scaner = new Scanner(System.in);
-        boolean iniciar_menu = true ;
-        Personaje personaje_jugador = new Personaje() ;
-        System.out.println("**Bienvenidos al mundo WESTEROS");
-        
-        while ( iniciar_menu) {
-            System.out.println("- Crear Personaje");
-        System.out.println("- Ver Personaje");
-        System.out.println("- Salir");
+  }
 
-        System.out.println("Por favor ingrese una opcion :  ");
 
-        opcion_elegida = scaner.nextLine();
 
-        System.out.println("La opcion escogida por el usuario es : " + opcion_elegida);
+  static void crearPersonaje(Scanner scanner, Personaje personaje_jugador) {
 
-        
-        
+    System.out.println("Creación del Personaje");
 
-        switch (opcion_elegida) {
-            case "1":
-                System.out.println("CREACION DE PERSONAJE");
-                
+    System.out.println("¿Cómo llamaras al personaje?");
 
-                System.out.println("nombre ?");
-                personaje_jugador.nombre = scaner.nextLine() ;
-                
-                System.out.println("apellido?");
-                personaje_jugador.apellido = scaner.nextLine() ;
+    String nombre_sin_validar = scanner.nextLine();
 
-                System.out.println("vida?");
-                personaje_jugador.setearVida(Integer.parseInt(scaner.nextLine()));                
-                
-                System.out.println("asignarle la edad al personaje ");
-                personaje_jugador.setear_edad(Integer.parseInt(scaner.nextLine())) ;
 
-                break;
 
-            case "2":
-                System.out.println(" Ver Personaje :");
+    boolean bandera_ciclo_validar_nombre = true;
 
-                System.out.println(" NOMBRE :" + personaje_jugador.nombre);
 
-                System.out.println(" APELLIDO :" + personaje_jugador.apellido );
 
-                System.out.println(" VIDA:" + personaje_jugador.verVida());
+    while (bandera_ciclo_validar_nombre) {
 
-                System.out.println("La edad del personaje es : " + personaje_jugador.veredad());
+      if (nombre_sin_validar.length() < 1) {
 
-                break;
+        System.out.println("Ingrese un nombre valido");
 
-            case "3" :
-                System.out.println("Gracias por jugar");
-                iniciar_menu = false ;
+        nombre_sin_validar = scanner.nextLine();
 
-                break;
-            
-            default:
-                System.out.println("Por favor ingrese una opcion correcta");
-        }
-        }
+      } else {
 
+        bandera_ciclo_validar_nombre = false;
+
+      }
 
     }
+
+
+
+    personaje_jugador.validarNombre(nombre_sin_validar);
+
+
+
+    System.out.println("¿Cómo llamaras al apellido del personaje?");
+
+    personaje_jugador.apellido = scanner.nextLine();
+
+    System.out.println("Asigna la vida del personaje");
+
+    // personaje_jugador.vida = Integer.parseInt(scanner.nextLine());
+
+    personaje_jugador.setVida(Integer.parseInt(scanner.nextLine()));
+
+    // Pero haber creado el metodo no es suficiente, por que si el atributo sigue
+
+    // publico, el encapsulamiento no tiene sentido. Revisemos con un ejemplo,
+
+    // observa la siguiente linea
+
+    // personaje_jugador.vida = -20;
+
+    // Para que esto no sea posible, declararemos el atributo como privado
+
+  }
+
+
+
+  static void verDatosDelPersonaje(Scanner scanner, Personaje personaje_jugador) {
+
+    System.out.println("Datos del personaje creado");
+
+    System.out.println("Nombre personaje: " + personaje_jugador.mostrarNombre());
+
+    System.out.println("Apellido personaje: " + personaje_jugador.apellido);
+
+
+
+    // OJITO CON ESTO, ESTO ES LA LUZ!
+
+    // REFLEXIONA, POR QUÉ ES MEJOR ESTO?
+
+    // ENCAPSULANDO
+
+    System.out.println("Vida personaje: " + personaje_jugador.getVida());
+
+    System.out.println("¿Se encuentra vivo?: " + personaje_jugador.esta_vivo);
+
+  }
+
+
 
 }
-
 
 
 
