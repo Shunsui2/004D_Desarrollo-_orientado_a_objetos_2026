@@ -10,11 +10,6 @@ public class Personaje {
   boolean esta_vivo = true;
 
 
-
-
-
-
-
   //Se va a comportar como un metodo seteador
 
   public void validarNombre(String nombre ){
@@ -106,4 +101,13 @@ public class Personaje {
     return vida;
 
  }
+
+
+  void trabajar(){
+    System.out.println("Chambeando");
+  }
+
+
+   
+
 }

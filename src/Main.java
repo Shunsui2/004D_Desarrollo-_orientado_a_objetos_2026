@@ -42,6 +42,8 @@ public class Main {
 
       System.out.println("3.- Cerrar");
 
+      System.out.println("4. - testeando cositas");
+
       opcion_menu = scanner.nextLine();
 
 
@@ -66,6 +68,10 @@ public class Main {
           mantener_menu = false;
 
           break;
+        
+        case "4":
+          testeandocositas();
+         break ;
 
 
 
@@ -80,6 +86,31 @@ public class Main {
     }
 
   }
+
+
+
+  static void testeandocositas(){
+
+    System.out.print("Este es el hacker  -->   ");
+    Personaje hacker = new Hacker();
+    hacker.trabajar();  
+
+    System.out.print("Este es el GameDev  -->   ");
+    Personaje gamedev = new GameDev();
+    gamedev.trabajar();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
